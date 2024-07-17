@@ -77,10 +77,8 @@ dependencies {
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.49")
-    kapt("com.google.dagger:hilt-android-compiler:2.49")
     kapt("com.google.dagger:hilt-compiler:2.49")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     //vm

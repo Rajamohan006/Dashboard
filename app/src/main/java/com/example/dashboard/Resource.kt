@@ -1,4 +1,4 @@
-package com.example.dashboard.data.local
+package com.example.dashboard
 
 sealed class Resource<T>(
     val data: T? = null,

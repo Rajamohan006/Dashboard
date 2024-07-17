@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface LinksApiService {
     @GET("dashboardNew")
-    suspend fun getLinks(): Response<List<Link>>
+    suspend fun getLinks(): Response<Link>
 }

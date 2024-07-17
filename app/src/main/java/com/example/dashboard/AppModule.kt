@@ -1,16 +1,9 @@
 package com.example.dashboard
 
-import android.content.Context
-import androidx.room.Room
-import com.example.dashboard.data.database.LinkDatabase
-import com.example.dashboard.data.remote.LinkDao
 import com.example.dashboard.data.remote.LinksApiService
-import com.example.dashboard.data.repository.LinksRepository
-import com.example.dashboard.domain.repositoryImpl.LinksRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -36,24 +29,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideLinksApiService(retrofit: Retrofit): LinksApiService = retrofit.create(LinksApiService::class.java)
+    fun provideLinksApiService(retrofit: Retrofit): LinksApiService =
+        retrofit.create(LinksApiService::class.java)
 
-    @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): LinkDatabase =
-        Room.databaseBuilder(context, LinkDatabase::class.java, "link_db")
-            .fallbackToDestructiveMigration()
-            .build()
-
-    @Provides
-    @Singleton
-    fun provideLinkDao(db: LinkDatabase): LinkDao = db.linkDao()
-
-    @Provides
-    @Singleton
-    fun provideLinksRepository(
-        apiService: LinksApiService,
-        linkDao: LinkDao,
-        @ApplicationContext context: Context
-    ): LinksRepository = LinksRepositoryImpl(apiService, linkDao, context)
 }

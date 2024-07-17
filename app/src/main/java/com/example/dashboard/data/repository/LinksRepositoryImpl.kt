@@ -1,11 +1,8 @@
-package com.example.dashboard.domain.repositoryImpl
+package com.example.dashboard.data.repository
 
-import android.content.Context
 import com.example.dashboard.data.local.Link
-import com.example.dashboard.data.local.Resource
-import com.example.dashboard.data.remote.LinkDao
+import com.example.dashboard.Resource
 import com.example.dashboard.data.remote.LinksApiService
-import com.example.dashboard.data.repository.LinksRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -14,8 +11,6 @@ import javax.inject.Inject
 
 class LinksRepositoryImpl @Inject constructor(
     private val apiService: LinksApiService,
-    private val linkDao: LinkDao,
-    private val context: Context
 ) : LinksRepository {
 
     override suspend fun getLinks(): Resource<List<Link>> {
@@ -26,7 +21,6 @@ class LinksRepositoryImpl @Inject constructor(
 
                 if (response.isSuccessful) {
                     val links = response.body() ?: emptyList()
-                    linkDao.insertAll(links)
                     Resource.Success(links)
                 } else {
                     // Handle different HTTP status codes
@@ -43,13 +37,7 @@ class LinksRepositoryImpl @Inject constructor(
                     Resource.Error("Network error: ${e.localizedMessage}")
                 }
             } catch (e: Exception) {
-                // Handle other exceptions and fallback to cached data if available
-                val cachedLinks = linkDao.getAllLinks()
-                if (cachedLinks.isNotEmpty()) {
-                    Resource.Success(cachedLinks)
-                } else {
-                    Resource.Error("An error occurred: ${e.localizedMessage}")
-                }
+                Resource.Error("An error occurred: ${e.localizedMessage}")
             }
         }
     }

@@ -40,7 +40,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -48,7 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.dashboard.BottomNavigationBar
 import com.example.dashboard.R
-import com.example.dashboard.data.local.Resource
+import com.example.dashboard.Resource
 import com.example.dashboard.presentation.components.Details
 import com.example.dashboard.presentation.components.LineChart
 import com.example.dashboard.presentation.components.Property1Default

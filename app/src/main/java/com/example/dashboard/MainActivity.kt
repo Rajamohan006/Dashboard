@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -108,4 +109,12 @@ fun AddScreen() {
 @Composable
 fun CoursesScreen() {
     Text("Courses Screen")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MyAppPreview() {
+    DashboardTheme {
+        MyApp()
+    }
 }
